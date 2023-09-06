@@ -147,46 +147,30 @@ public class QuickSort {
             quickSort(array, p + 1, h);
         }
     }
+    
+    //Partitions an array around a pivot element
+    public static int partition(int[] a, int l, int h) /*l = low, h = high*/ {
 
-//    public static int partition(int array[], int l, int h) /*l = low, h = high*/ {
-//        int pivot = array[h];
-//        int i = (l - 1);
-//
-//        for (int j = l; j < h; j++) {
-//            
-//            // If the current element is smaller than or equal to the pivot
-//            if (array[j] <= pivot) {
-//                i++;
-//
-//                // swap array[i] and array[j]
-//                int temp = array[i];
-//                array[i] = array[j];
-//                array[j] = temp;
-//            }
-//        }
-//
-//        // swap array[i+1] and array[high] (or pivot)
-//        int temp = array[i + 1];
-//        array[i + 1] = array[h];
-//        array[h] = temp;
-//
-//        return i + 1;
-//    }
-    public static int partition(int[] a, int l, int h) {
+        // Select the pivot element (usually the first element in the subarray).
         int p = a[l];
-        int m = l;
 
+        // Initialize the marker for elements less than the pivot.
+        int m = l;
+        
+        // Iterate through the subarray from l+1 to h.
         for (int k = l + 1; k <= h; k++) {
             if (a[k] < p) {
                 m++;
-                swap(a, k, m);
+                swap(a, k, m);  // Swap elements less than pivot
             }
         }
 
-        swap(a, l, m);
-        return m;
+        swap(a, l, m);  // Place pivot in correct position
+        return m;       // Return pivot index
     }
+    
 
+//Swaps two elements in an array.
     private static void swap(int[] a, int i, int j) {
         int temp = a[i];
         a[i] = a[j];
